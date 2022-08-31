@@ -1,0 +1,54 @@
+<html>
+<head>
+<script language="javascript">
+    function processar() {
+        var nomeDaPessoa, cpfDaPessoa, sexoDaPessoa, brasileira, nacionalidade, vac1, vac2, msg, selecao, observacoes;
+        nomeDaPessoa = document.formulario.nome.value;
+        sexoDaPessoa = document.formulario.sexo.value;
+        cpfDaPessoa = document.getElementById("cpf");
+        brasileira = document.getElementById("brasileira").checked;
+        vac1 = document.formulario.vacinado1.checked;
+        vac2 = document.formulario.vacinado2.checked;
+        observacoes = document.formulario.obs.value;
+        document.formulario.nomeexibe.value = nomeDaPessoa;
+        nacionalidade = (brasileira?"brasileir":"estrangeir");
+        nacionalidade += (sexoDaPessoa=="F"?"a":"o");
+        selecao = document.formulario.select.value;
+        msg = "Olá " + (sexoDaPessoa=="F"?"Sra.":"Sr.") + nomeDaPessoa + ", " + nacionalidade + ", CPF: " + cpfDaPessoa.value + ". 1ª dose: " + (vac1==true?"Sim":"Não") + " / 2ª dose: " + (vac2==true?"Sim":"Não");
+        document.getElementById("destino").innerHTML = msg + " | " + selecao + '\n' + "Observações: " + '\n'+ observacoes;
+    }
+</script>
+
+</head>
+<body>
+
+<form name="formulario">
+Digite o nome da pessoa: <input type="text" name="nome" size="30" maxlength="30"/><br><br>
+Digite o CPF da pessoa: <input type="text" id="cpf" /><br><br>
+Nacionalidade Brasileira <input type="checkbox" id="brasileira"><br><br>
+Sexo: <br>
+<input type="radio" name="sexo" value="F">Feminino<br>
+<input type="radio" name="sexo" value="M">Masculino<br><br> 
+Estado civil:
+<select name="select">
+    <option value="Solteiro" selected>Solteiro</option>
+    <option value="Casado">Casado</option>
+    <option value="Viúvo">Viúvo</option>
+    <option value="Divorciado">Divorciado</option>
+  </select><br><br>
+<input type="checkbox" name="vacinado1" value="dose1">Vacinado 1ª dose<br>
+<input type="checkbox" name="vacinado2" value="dose2">Vacinado 2ª dose<br><br>
+Observações:<br>
+<textarea name="obs" rows="5" cols="50">Digite aqui suas observações</textarea><br><br>
+
+<input value="OK" type="button" onclick="processar();">
+
+<br><br><br>
+<input type="text" name="nomeexibe" size="50"readonly><br>
+</form>
+
+Aqui vai aparecer a mensagem: <p id="destino"></p>
+
+
+</body>
+</html>
